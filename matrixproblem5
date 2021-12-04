@@ -1,0 +1,47 @@
+// Time Complexity : O(logm*n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding thiis is:no
+
+
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) 
+    {
+        if(matrix == null || matrix.length == 0) return false;//base case if matrix is null
+        
+        
+        
+                
+            
+            int m = matrix.length; // initialize  total rows 
+            int n = matrix[0].length; // intialize each lenghth of each column
+            
+            int low = 0; //assign 0 to low index 
+            int high = m*n - 1; // its higher bond 
+            
+            while (low <= high){
+                int mid = low + (high - low )/2 ;
+                    // used low + (higher - low)/2 to prevent
+                            //  from integer overflow instead write low + high /2;
+                   
+                 int r = mid /n ;  //get row 
+                int c = mid % n;// get column 
+                
+                if(matrix[r][c] == target) /// if r and c == target 
+                {
+                    return true; //return true;
+                    
+                }
+                else if(target < matrix[r][c]){  //otherwise if target is 
+            high = mid - 1;
+                }
+                    
+                    else {
+                        low = mid +1 ; // else low become mid +1 but the high is still m*n -1
+                    }
+            }
+            return false;
+                
+                
+           }
+               }
