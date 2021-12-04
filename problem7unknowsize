@@ -1,0 +1,41 @@
+//Times complexity is : O(logn)
+//space complexity is O(1)
+// yes code was working on leetcode
+//it was easy one 
+
+/**
+ * // This is ArrayReader's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * interface ArrayReader {
+ *     public int get(int index) {}
+ * }
+ */
+
+class Solution {
+    public int search(ArrayReader reader, int target) {
+        
+        int low = 0; // initialize values 
+        int high = 1; //set high to 1 because 
+        while(reader.get(high) < target) //when high is less than target 
+ {
+            low = high;// low become high 
+            high = 2 * high;// high will be multiplied by 2
+        }
+        
+        while(low <=high){ // and when low is leass than or equal to high
+            int mid = low + (high-low)/2; // find mind // also took care of integer overflow 
+            if(reader.get(mid) == target) { // if mid === target 
+                return mid; //then trun mid value 
+            }
+            else if(target< reader.get(mid)) //otherwise check if target is leaas than mid
+            {
+                high = mid- 1; //if yes high become mid - 1;
+            }
+            else {
+                low = mid + 1;// otherwise this give low by increasing mid by 1
+            }
+        }
+        return -1;// if eerything empty retun -1
+        
+    }
+}
